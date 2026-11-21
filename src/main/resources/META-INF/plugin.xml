@@ -31,6 +31,10 @@
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
         <toolWindow id="MyToolWindow" factoryClass="com.husbylabs.MyToolWindowFactory"
                     icon="AllIcons.Toolwindows.ToolWindowPalette"/>
+        <fileType name="DBC File"
+                  implementationClass="com.husbylabs.vecna.DbcFileType"
+                  language="DBC"
+                  extensions="dbc"/>
     </extensions>
 
 </idea-plugin>
