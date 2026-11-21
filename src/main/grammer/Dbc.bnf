@@ -1,0 +1,119 @@
+
+{
+    parserClass="com.husbylabs.vecna.parser.DbcParser"
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Dbc"
+    psiImplClassSuffix="Impl"
+
+    psiPackage="com.husbylabs.vecna.psi"
+    psiImplPackage="com.husbylabs.vecna.psi.impl"
+
+    elementTypeHolderClass="com.husbylabs.vecna.psi.DbcTypes"
+    elementTypeClass="com.husbylabs.vecna.psi.DbcElementType"
+    tokenTypeClass="com.husbylabs.vecna.psi.DbcTokenType"
+
+    tokens = [
+        VERSION_KW = "VERSION"
+        NS_KW = "NS_"
+        BS_KW = "BS_"
+        BU_KW = "BU_"
+
+        BO_KW = "BO_"
+        SG_KW = "SG_"
+        CM_KW = "CM_"
+
+        BA_DEF_DEF_KW = "BA_DEF_DEF_"
+        BA_DEF_KW = "BA_DEF_"
+        BA_KW = "BA_"
+
+        VAL_TABLE_KW = "VAL_TABLE_"
+        VAL_KW = "VAL_"
+
+        SIG_VALTYPE_KW = "SIG_VALTYPE_"
+        SG_MUL_VAL_KW = "SG_MUL_VAL_"
+        BO_TX_BU_KW = "BO_TX_BU_"
+
+        INT_KW = "INT"
+        HEX_KW = "HEX"
+        FLOAT_KW = "FLOAT"
+        STRING_KW = "STRING"
+        ENUM_KW = "ENUM"
+
+        IDENTIFIER_TOKEN = "regexp:[a-zA-Z_][a-zA-Z_0-9]*"
+        NUMBER_LITERAL = "regexp:[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?"
+        STRING_LITERAL = 'regexp:"([^"\\]|\\.)*"'
+
+        COLON = ":"
+        SEMICOLON = ";"
+        COMMA = ","
+
+        LPAREN = "("
+        RPAREN = ")"
+        LBRACKET = "["
+        RBRACKET = "]"
+
+        PIPE = "|"
+        AT = "@"
+        PLUS = "+"
+        MINUS = "-"
+    ]
+}
+
+/* Root file */
+
+dbcFile ::= item_*
+
+private item_ ::= message | signal | otherToken_
+
+/* Message declaration */
+
+message ::= BO_KW NUMBER_LITERAL IDENTIFIER_TOKEN
+            COLON NUMBER_LITERAL IDENTIFIER_TOKEN
+
+/* Signal declaration */
+
+signal ::= SG_KW IDENTIFIER_TOKEN IDENTIFIER_TOKEN?
+           COLON NUMBER_LITERAL PIPE NUMBER_LITERAL
+           AT NUMBER_LITERAL (PLUS | MINUS)
+           LPAREN signedNumber_ COMMA signedNumber_ RPAREN
+           LBRACKET signedNumber_ PIPE signedNumber_ RBRACKET
+           STRING_LITERAL IDENTIFIER_TOKEN
+           (COMMA IDENTIFIER_TOKEN)*
+
+private signedNumber_ ::= MINUS? NUMBER_LITERAL
+
+/* Temporary fallback for other DBC constructs */
+
+private otherToken_ ::= VERSION_KW
+                      | NS_KW
+                      | BS_KW
+                      | BU_KW
+                      | CM_KW
+                      | BA_DEF_DEF_KW
+                      | BA_DEF_KW
+                      | BA_KW
+                      | VAL_TABLE_KW
+                      | VAL_KW
+                      | SIG_VALTYPE_KW
+                      | SG_MUL_VAL_KW
+                      | BO_TX_BU_KW
+                      | INT_KW
+                      | HEX_KW
+                      | FLOAT_KW
+                      | STRING_KW
+                      | ENUM_KW
+                      | IDENTIFIER_TOKEN
+                      | NUMBER_LITERAL
+                      | STRING_LITERAL
+                      | COLON
+                      | SEMICOLON
+                      | COMMA
+                      | LPAREN
+                      | RPAREN
+                      | LBRACKET
+                      | RBRACKET
+                      | PIPE
+                      | AT
+                      | PLUS
+                      | MINUS

@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.changelog")
     id("org.jetbrains.intellij.platform")
+    id("org.jetbrains.intellij.platform.grammarkit")
 }
 
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
@@ -17,5 +18,25 @@ dependencies {
 
         // Add plugin dependencies for compilation here, for example:
         // bundledPlugin("com.intellij.java")
+    }
+}
+
+tasks {
+    generateLexer {
+        sourceFile = file("src/main/grammar/Dbc.flex")
+    }
+
+    generateParser {
+        sourceFile = file("src/main/grammar/Dbc.bnf")
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir(tasks.generateLexer)
+            srcDir(tasks.generateParser)
+            srcDir("src/main/gen")
+        }
     }
 }
