@@ -1,4 +1,14 @@
 package com.husbylabs.vecna
 
-class DbcSyntaxHighlighterFactory {
+import com.intellij.openapi.fileTypes.SyntaxHighlighter
+import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VirtualFile
+
+class DbcSyntaxHighlighterFactory : SyntaxHighlighterFactory() {
+
+    override fun getSyntaxHighlighter(
+        project: Project?,
+        virtualFile: VirtualFile?
+    ): SyntaxHighlighter = DbcSyntaxHighlighter()
 }

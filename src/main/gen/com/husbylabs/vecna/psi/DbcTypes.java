@@ -1,8 +1,6 @@
 // This is a generated file. Not intended for manual editing.
 package com.husbylabs.vecna.psi;
 
-import com.husbylabs.vecna.DbcElementType;
-import com.husbylabs.vecna.DbcTokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;

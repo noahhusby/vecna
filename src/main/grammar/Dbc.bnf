@@ -64,7 +64,7 @@
 
 dbcFile ::= item_*
 
-private item_ ::= message | signal | otherToken_
+private item_ ::= message | signal | comment | otherToken_
 
 /* Message declaration */
 
@@ -80,6 +80,8 @@ signal ::= SG_KW IDENTIFIER_TOKEN IDENTIFIER_TOKEN?
            LBRACKET signedNumber_ PIPE signedNumber_ RBRACKET
            STRING_LITERAL IDENTIFIER_TOKEN
            (COMMA IDENTIFIER_TOKEN)*
+
+comment ::= CM_KW  commentTarget_? STRING_LITERAL SEMICOLON
 
 private signedNumber_ ::= MINUS? NUMBER_LITERAL
 
@@ -117,3 +119,7 @@ private otherToken_ ::= VERSION_KW
                       | AT
                       | PLUS
                       | MINUS
+
+private commentTarget_ ::= BO_KW NUMBER_LITERAL
+                          | SG_KW NUMBER_LITERAL IDENTIFIER_TOKEN
+                          | BU_KW IDENTIFIER_TOKEN

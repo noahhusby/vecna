@@ -36,7 +36,6 @@ sourceSets {
         java {
             srcDir(tasks.generateLexer)
             srcDir(tasks.generateParser)
-            srcDir("src/main/gen")
         }
     }
 }

@@ -21,20 +21,22 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyMessageBundle</resource-bundle>
-
     <!-- Extensions defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <!-- If the plugin is published on JetBrains Marketplace, errors reported by users are available on the plugin page.
              See https://plugins.jetbrains.com/docs/marketplace/error-handler.html#developers-side for details. -->
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
-        <toolWindow id="MyToolWindow" factoryClass="com.husbylabs.MyToolWindowFactory"
-                    icon="AllIcons.Toolwindows.ToolWindowPalette"/>
         <fileType name="DBC File"
                   implementationClass="com.husbylabs.vecna.DbcFileType"
                   language="DBC"
                   extensions="dbc"/>
+        <lang.syntaxHighlighterFactory
+                language="DBC"
+                implementationClass="com.husbylabs.vecna.DbcSyntaxHighlighterFactory"/>
+        <lang.parserDefinition
+                language="DBC"
+                implementationClass="com.husbylabs.vecna.DbcParserDefinition"/>
     </extensions>
 
 </idea-plugin>

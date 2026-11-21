@@ -6,8 +6,10 @@ import com.intellij.openapi.util.NlsSafe
 import org.jetbrains.annotations.NonNls
 import javax.swing.Icon
 
-class DbcFileType : LanguageFileType(DbcLanguage){
-    override fun getName() = "DBC File"
+@Suppress("KotlinObjectRegisteredAsExtension")
+object DbcFileType : LanguageFileType(DbcLanguage){
+
+    override fun getName() = "DBC"
 
     override fun getDescription() = "CAN Database File"
 
