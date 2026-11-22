@@ -1,6 +1,7 @@
 .gradle
 .idea
 .intellijPlatform
+.kotlin
 build
 /idea-flex.skeleton
 /jflex-1.10.17.jar
