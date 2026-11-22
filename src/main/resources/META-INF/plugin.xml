@@ -5,7 +5,6 @@
 
     <vendor url="https://www.noahhusby.com">Noah Husby</vendor>
 
-
     <description><![CDATA[
     <p>
         Vecna provides native support for CAN database (DBC) files in all JetBrains IDEs,
