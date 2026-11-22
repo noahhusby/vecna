@@ -1,21 +1,27 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.husbylabs.vecna</id>
 
-    <!-- Public plugin name should be written in Title Case.
-     Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
     <name>Vecna</name>
 
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor url="https://www.noahhusby.com">Noah Husby</vendor>
 
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+
     <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
-        ]]></description>
+    <p>
+        Vecna provides native support for CAN database (DBC) files in all JetBrains IDEs,
+        making it easier to view, edit, and maintain CAN bus communication definitions
+        directly within your development environment.
+    </p>
+
+    <h3>Features</h3>
+    <ul>
+        <li><b>Syntax Highlighting</b> — Theme-aware highlighting for DBC keywords, signals, messages, nodes, and values.</li>
+        <li><b>Language Parsing</b> — Structured recognition of DBC declarations and syntax.</li>
+        <li><b>IDE Integration</b> — Native file type recognition and custom DBC file icons.</li>
+        <li><b>Color Customization</b> — Dedicated highlighting categories for DBC language elements.</li>
+    </ul>
+]]></description>
+
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
