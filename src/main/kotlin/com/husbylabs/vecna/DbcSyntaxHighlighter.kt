@@ -20,6 +20,10 @@ class DbcSyntaxHighlighter : SyntaxHighlighterBase() {
         private val STRING = arrayOf(
             DefaultLanguageHighlighterColors.STRING
         )
+
+        private val SEMICOLON = arrayOf(
+            DefaultLanguageHighlighterColors.SEMICOLON
+        )
     }
 
     override fun getHighlightingLexer(): Lexer =
@@ -28,13 +32,25 @@ class DbcSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getTokenHighlights(
         tokenType: IElementType
     ): Array<TextAttributesKey> = when (tokenType) {
+        DbcTypes.VERSION_KW,
+        DbcTypes.NS_KW,
+        DbcTypes.BS_KW,
+        DbcTypes.BU_KW,
         DbcTypes.BO_KW,
         DbcTypes.SG_KW,
-        DbcTypes.BU_KW,
-        DbcTypes.CM_KW -> KEYWORD
+        DbcTypes.CM_KW,
+        DbcTypes.BA_KW,
+        DbcTypes.BA_DEF_KW,
+        DbcTypes.BA_DEF_DEF_KW,
+        DbcTypes.VAL_KW,
+        DbcTypes.VAL_TABLE_KW,
+        DbcTypes.BO_TX_BU_KW,
+        DbcTypes.SIG_VALTYPE_KW,
+        DbcTypes.SG_MUL_VAL_KW -> KEYWORD
 
         DbcTypes.NUMBER_LITERAL -> NUMBER
         DbcTypes.STRING_LITERAL -> STRING
+        DbcTypes.SEMICOLON -> SEMICOLON
 
         else -> emptyArray()
     }

@@ -64,22 +64,28 @@
 
 dbcFile ::= item_*
 
-private item_ ::= message | signal | comment | otherToken_
+private item_ ::= message | signal | comment | valueDescription | otherToken_
 
-/* Message declaration */
+message ::= BO_KW NUMBER_LITERAL messageName
+            COLON NUMBER_LITERAL nodeName
 
-message ::= BO_KW NUMBER_LITERAL IDENTIFIER_TOKEN
-            COLON NUMBER_LITERAL IDENTIFIER_TOKEN
-
-/* Signal declaration */
-
-signal ::= SG_KW IDENTIFIER_TOKEN IDENTIFIER_TOKEN?
+signal ::= SG_KW signalName IDENTIFIER_TOKEN?
            COLON NUMBER_LITERAL PIPE NUMBER_LITERAL
            AT NUMBER_LITERAL (PLUS | MINUS)
            LPAREN signedNumber_ COMMA signedNumber_ RPAREN
            LBRACKET signedNumber_ PIPE signedNumber_ RBRACKET
-           STRING_LITERAL IDENTIFIER_TOKEN
-           (COMMA IDENTIFIER_TOKEN)*
+           STRING_LITERAL nodeName
+           (COMMA nodeName)*
+
+valueDescription ::= VAL_KW NUMBER_LITERAL signalReference
+                     valueDescriptionEntry+ SEMICOLON
+
+valueDescriptionEntry ::= signedNumber_ STRING_LITERAL
+
+signalReference ::= IDENTIFIER_TOKEN
+messageName ::= IDENTIFIER_TOKEN
+signalName ::= IDENTIFIER_TOKEN
+nodeName ::= IDENTIFIER_TOKEN
 
 comment ::= CM_KW  commentTarget_? STRING_LITERAL SEMICOLON
 

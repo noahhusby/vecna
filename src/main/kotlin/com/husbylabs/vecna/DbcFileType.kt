@@ -15,5 +15,5 @@ object DbcFileType : LanguageFileType(DbcLanguage){
 
     override fun getDefaultExtension() = "dbc"
 
-    override fun getIcon(): Icon? = null
+    override fun getIcon(): Icon = VecnaIcons.DBC
 }
