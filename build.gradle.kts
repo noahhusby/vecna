@@ -21,6 +21,27 @@ dependencies {
     }
 }
 
+version = providers.environmentVariable("PLUGIN_VERSION")
+    .getOrElse("0.1.0")
+
+intellijPlatform {
+    pluginConfiguration {
+        version = provider { project.version.toString() }
+    }
+
+    publishing {
+        token = providers.environmentVariable("PUBLISH_TOKEN")
+        channels = emptyList()
+    }
+
+    signing {
+        certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
+        privateKey = providers.environmentVariable("PRIVATE_KEY")
+        password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+            .orElse("")
+    }
+}
+
 tasks {
     generateLexer {
         sourceFile = file("src/main/grammar/Dbc.flex")
